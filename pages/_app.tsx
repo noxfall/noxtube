@@ -2,19 +2,15 @@ import Head from 'next/head';
 import { Fragment } from 'react';
 import '../styles/global.css';
 import Topbar from '../components/Topbar'
+import type { AppProps } from 'next/app';
+import { wrapper } from '../utils/store';
 
-interface Props {
-  Component: JSX.Element | any;
-  pageProps: Props;
-  title: string;
-};
-
-const App: React.FC<Props> = ({ Component, pageProps, title = 'NoxTube' }): JSX.Element => {
+const App = ({ Component, pageProps }: AppProps) => {
   return (
     <Fragment>
       <Head>
         <link rel="shortcut icon" href="/logo.svg" type="image/x-icon" />
-        <title>{title}</title>
+        <title>NoxTube</title>
       </Head>
       <main className="app w-full h-full flex flex-col justify-center items-center"> 
         <Topbar />
@@ -25,4 +21,4 @@ const App: React.FC<Props> = ({ Component, pageProps, title = 'NoxTube' }): JSX.
   );
 };
 
-export default App;
+export default wrapper.withRedux(App);
